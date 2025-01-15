@@ -27,56 +27,56 @@ public class GreetingTests
     [Fact]
     public void Greet_ShouldReturnHelloBob_WhenNameIsBob()
     {
-        var result = _greetingService.Greet(new string[] { "Bob" });
+        var result = _greetingService.Greet(["Bob"]);
         Assert.Equal("Hello, Bob.", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloMyFriend_WhenNameIsNull()
     {
-        var result = _greetingService.Greet(new string[] { null });
+        var result = _greetingService.Greet([null]);
         Assert.Equal("Hello, my friend.", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHELLOJERRY_WhenNameIsJERRY()
     {
-        var result = _greetingService.Greet(new string[] { "JERRY" });
+        var result = _greetingService.Greet(["JERRY"]);
         Assert.Equal("HELLO JERRY!", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloJillAndJane_WhenNamesAreJillAndJane()
     {
-        var result = _greetingService.Greet(new string[] { "Jill", "Jane" });
+        var result = _greetingService.Greet(["Jill", "Jane"]);
         Assert.Equal("Hello, Jill and Jane.", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloAmyBrianAndCharlotte_WhenNamesAreAmyBrianCharlotte()
     {
-        var result = _greetingService.Greet(new string[] { "Amy", "Brian", "Charlotte" });
+        var result = _greetingService.Greet(["Amy", "Brian", "Charlotte"]);
         Assert.Equal("Hello, Amy, Brian, and Charlotte.", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloAmyAndCharlotteAndHELLOBRIAN_WhenNamesAreAmyBRIANCharlotte()
     {
-        var result = _greetingService.Greet(new string[] { "Amy", "BRIAN", "Charlotte" });
+        var result = _greetingService.Greet(["Amy", "BRIAN", "Charlotte"]);
         Assert.Equal("Hello, Amy and Charlotte. HELLO BRIAN!", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloBobCharlieAndDianne_WhenNamesAreBobAndCharlieDianne()
     {
-        var result = _greetingService.Greet(new string[] { "Bob", "Charlie, Dianne" });
+        var result = _greetingService.Greet(["Bob", "Charlie, Dianne"]);
         Assert.Equal("Hello, Bob, Charlie, and Dianne.", result);
     }
 
     [Fact]
     public void Greet_ShouldReturnHelloBobAndCharlieDianne_WhenNamesAreBobAndQuotedCharlieDianne()
     {
-        var result = _greetingService.Greet(new string[] { "Bob", "\"Charlie, Dianne\"" });
+        var result = _greetingService.Greet(["Bob", "\"Charlie, Dianne\""]);
         Assert.Equal("Hello, Bob and Charlie, Dianne.", result);
     }
 }
