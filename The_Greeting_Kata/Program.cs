@@ -2,18 +2,31 @@
 using The_Greeting_Kata;
 
 var serviceProvider = new ServiceCollection()
-                        .AddSingleton<SimpleGreeting>()
-                        .AddSingleton<NullNameHandler>()
-                        .AddSingleton<ToUpperHandler>()
-                        .BuildServiceProvider();
+    .AddSingleton<NullNameHandler>()
+    .AddSingleton<MixedNameHandler>()
+    .AddSingleton<ShoutingNameHandler>()
+    .AddSingleton<NormalNameHandler>()
+    .BuildServiceProvider();
 
-var simpleGreeting = serviceProvider.GetService<SimpleGreeting>();
 var nullNameHandler = serviceProvider.GetService<NullNameHandler>();
-var upperHandler = serviceProvider.GetService<ToUpperHandler>();
+var shoutingNameHandler = serviceProvider.GetService<ShoutingNameHandler>();
+var normalNameHandler = serviceProvider.GetService<NormalNameHandler>();
+var mixedNameHandler = serviceProvider.GetService<MixedNameHandler>();
 
-nullNameHandler.SetNextHandler(upperHandler);
-upperHandler.SetNextHandler(simpleGreeting);
+nullNameHandler.SetNextHandler(mixedNameHandler);
+mixedNameHandler.SetNextHandler(shoutingNameHandler);
+shoutingNameHandler.SetNextHandler(normalNameHandler);
 
-Console.WriteLine(simpleGreeting.Greet("Bob"));
-Console.WriteLine(nullNameHandler.Greet(null)); 
-Console.WriteLine(simpleGreeting.Greet("BOB")); 
+var greetingService = new GreetingService(nullNameHandler);
+
+Console.WriteLine(greetingService.Greet(["Bob"]));
+Console.WriteLine(greetingService.Greet([null]));
+Console.WriteLine(greetingService.Greet(["JERRY"]));
+Console.WriteLine(greetingService.Greet(["Jill", "Jane"]));
+Console.WriteLine(greetingService.Greet(["Amy", "Brian", "Charlotte"]));
+Console.WriteLine(greetingService.Greet(["Amy", "BRIAN", "Charlotte"]));
+Console.WriteLine(greetingService.Greet(["Bob", "Charlie, Dianne"]));
+Console.WriteLine(greetingService.Greet(["Bob", "\"Charlie, Dianne\""]));
+    
+
+

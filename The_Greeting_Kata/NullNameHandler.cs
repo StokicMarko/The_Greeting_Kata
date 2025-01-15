@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace The_Greeting_Kata;
 
-namespace The_Greeting_Kata
-{
-    public class NullNameHandler : GreetingHandler
-    {
-        public override string Greet(string name) 
+public class NullNameHandler : GreetingHandler 
+{ 
+    public override string Handle(string[] names) 
+    { 
+        if (names == null || names.Length == 0 || names[0] == null) 
         { 
-            if (string.IsNullOrEmpty(name)) 
-            { 
-                return "Hello, my friend."; 
-            } 
-            return _nextHandler?.Greet(name); 
-        }
-    }
+            return "Hello, my friend."; 
+        } 
+        return _nextHandler?.Handle(names); 
+    } 
 }

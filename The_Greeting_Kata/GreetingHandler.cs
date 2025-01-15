@@ -7,5 +7,6 @@
         _nextHandler = nextHandler;
     }
 
-    public abstract string Greet(string name);
+    public abstract string Handle(string[] names);
 }
+
