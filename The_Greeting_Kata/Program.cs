@@ -2,14 +2,18 @@
 using The_Greeting_Kata;
 
 var serviceProvider = new ServiceCollection()
-                        .AddTransient<SimpleGreeting>()
-                        .AddTransient<NullNameHandler>()
+                        .AddSingleton<SimpleGreeting>()
+                        .AddSingleton<NullNameHandler>()
+                        .AddSingleton<ToUpperHandler>()
                         .BuildServiceProvider();
 
-var simpleGreeting = serviceProvider.GetRequiredService<SimpleGreeting>();
-var nullNameHandler = serviceProvider.GetRequiredService<NullNameHandler>();
+var simpleGreeting = serviceProvider.GetService<SimpleGreeting>();
+var nullNameHandler = serviceProvider.GetService<NullNameHandler>();
+var upperHandler = serviceProvider.GetService<ToUpperHandler>();
 
-simpleGreeting.SetNextHandler(nullNameHandler);
+nullNameHandler.SetNextHandler(upperHandler);
+upperHandler.SetNextHandler(simpleGreeting);
 
 Console.WriteLine(simpleGreeting.Greet("Bob"));
-Console.WriteLine(simpleGreeting.Greet(null)); 
+Console.WriteLine(nullNameHandler.Greet(null)); 
+Console.WriteLine(simpleGreeting.Greet("BOB")); 
