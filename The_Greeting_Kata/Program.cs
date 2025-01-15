@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using The_Greeting_Kata.Handlers;
+using The_Greeting_Kata.Services;
 
 var serviceProvider = new ServiceCollection()
     .AddSingleton<NullNameHandler>()
