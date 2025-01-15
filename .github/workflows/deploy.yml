@@ -37,7 +37,7 @@ jobs:
             --name github "https://nuget.pkg.github.com/StokicMarko/index.json"
 
       - name: Execute push
-        run: 
+        run: |
           dotnet nuget push "The_Greeting_Kata/bin/Release/The_Greeting_Kata.1.0.${{ github.run_number }}.nupkg" \
             --api-key ${{ secrets.TOKEN }} \
             --source "github"
