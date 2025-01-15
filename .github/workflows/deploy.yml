@@ -39,6 +39,6 @@ jobs:
 
       - name: Execute push
         run: |
-          dotnet nuget push "The_Greeting_Kata/bin/Release/The_Greeting_Kata.1.0.${{ github.run_number }}.nupkg" \
+          dotnet nuget push "The_Greeting_Kata/bin/Release/The_Greeting_Kata.1.0.*.nupkg" \
             --api-key ${{ secrets.TOKEN }} \
             --source "github"
