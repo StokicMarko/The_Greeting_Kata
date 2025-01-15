@@ -1,4 +1,4 @@
-﻿namespace The_Greeting_Kata;
+﻿namespace The_Greeting_Kata.Handlers;
 
 using System.Text.RegularExpressions;
 

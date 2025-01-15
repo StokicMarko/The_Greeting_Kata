@@ -2,6 +2,7 @@ using The_Greeting_Kata;
 
 namespace The_Greeting_Kata_Test;
 
+using The_Greeting_Kata.Services;
 using Xunit;
 
 public class GreetingTests

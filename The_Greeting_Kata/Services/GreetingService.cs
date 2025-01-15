@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace The_Greeting_Kata;
+namespace The_Greeting_Kata.Services;
 
 public class GreetingService
 {
