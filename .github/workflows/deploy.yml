@@ -28,7 +28,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
         continue-on-error: false
       
-      - name: Execute push
+      - name: Execute pack
         run: |
           dotnet nuget add source \
             --username StokicMarko \
@@ -36,6 +36,8 @@ jobs:
             --store-password-in-clear-text \
             --name github "https://nuget.pkg.github.com/StokicMarko/index.json"
 
+      - name: Execute push
+        run: 
           dotnet nuget push "The_Greeting_Kata/bin/Release/The_Greeting_Kata.1.0.${{ github.run_number }}.nupkg" \
             --api-key ${{ secrets.TOKEN }} \
             --source "github"
