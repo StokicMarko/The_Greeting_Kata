@@ -27,3 +27,17 @@ jobs:
       - name: Run tests
         run: dotnet test --no-build --verbosity normal
         continue-on-error: false
+      
+      - name: Execute push
+        run: |
+          dotnet nuget add source \
+            --username StokicMarko \
+            --password ${{ secrets.TOKEN }} \
+            --store-password-in-clear-text \
+            --name github "https://nuget.pkg.github.com/StokicMarko/index.json"
+
+          dotnet nuget push "The_Greeting_Kate/bin/Release/Greeting.1.0.${{ github.run_number }}.nupkg" \
+            --api-key ${{ secrets.TOKEN }} \
+            --source "github"
+
+           
